@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #+TITLE: Personal blog/homepage
 
 something i've been meaning to try for weeks, not too complicated right now, a minimal blog with an about page.
@@ -5,3 +6,13 @@ something i've been meaning to try for weeks, not too complicated right now, a m
 ** Todo
 [ ] Design the homepage on figma
 [ ] Implement the homepage
+=======
+#+TITLE: Personal homepage
+
+something i've been meaning to try for weeks, not too complicated right now, a minimal blog with an about page.
+
+** TODO
+- [X] Get the site up and running
+- [ ] Design the homepage on figma
+- [ ] Implement the homepage
+>>>>>>> 00853f9 (readme init)
