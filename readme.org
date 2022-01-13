@@ -2,7 +2,7 @@
 
 something i've been meaning to try for weeks, not too complicated right now, a minimal blog with an about page.
 
-** TODO
-- [X] Get the site up and running
-- [ ] Design the homepage on figma
-- [ ] Implement the homepage
+** TODO TODO
+1) Get the site up and running
+2) Design the homepage on figma
+3) Implement the homepage

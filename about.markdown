@@ -3,16 +3,8 @@ layout: page
 title: About
 permalink: /about/
 ---
+## ˈfəːmən
+firman is my personal blog encompassing everything which interests me. <br>The word firman can be loosely translated to `royal edict` in Persian, the language of courts in the Mughal Empire.
+<br><br>
+The blog itself runs on [Jekyll](http://jekyllrb.com/), a static site generator written in ruby, using the [minima](https://github.com/jekyll/minima) theme – hosted on Github pages. 
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
-
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
-
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
-
-
-[jekyll-organization]: https://github.com/jekyll
