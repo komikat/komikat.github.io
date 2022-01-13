@@ -1,0 +1,7 @@
+#+TITLE: Personal blog/homepage
+
+something i've been meaning to try for weeks, not too complicated right now, a minimal blog with an about page.
+
+** Todo
+[ ] Design the homepage on figma
+[ ] Implement the homepage
