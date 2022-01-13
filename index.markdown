@@ -4,8 +4,8 @@
 
 layout: home
 list_title: ' '
+title: Hey, I'm ə̊kʂɪt
 ---
 
-# Hey, I'm ə̊kʂɪt
 a computer science freshman at [IIIT Hyderabad](http://iiit.ac.in/) 
  – interested in computational linguistics, functional programming and esoteric text editors
