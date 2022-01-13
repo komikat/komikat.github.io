@@ -18,10 +18,8 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-author:
-
-  name: akshit kumar
-  email: akshitdotkr@gmail.com
+author: akshit kumar
+email: akshitdotkr@gmail.com
 
 description: >- # this means to ignore newlines until "baseurl:"
   akshit's personal homepage
@@ -31,19 +29,19 @@ url: "https://akshitkr.github.io" # the base hostname & protocol for your site, 
 # Build settings
 plugins:
   - jekyll-feed
-  - jekyll-remote-theme
 
 
-remote_theme: jekyll/minima
+theme: minima
 minima:
   date_format: "%b %-d, %Y"
-  social_links:
-    github: akshitkr
-    twitter: akshitkr
-    linkedin: akshit-kumar-229a06147
-    instagram: idek.akshit
+
+github_username: akshitkr
+twitter_username: akshitkr
+instagram_username: idek.akshit
 
 title: firman
+
+show_excerpts: false
 
 
 
