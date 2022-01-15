@@ -1,0 +1,29 @@
+<script type="text/javascript"> (function() { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="{{ site.baseurl }}/js/bundle.js"></script>
+<script src="../assets/js/spotify.js"></script>
+
+<style>
+    .pulsing {
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0% {
+            opacity: 0.3;
+        }
+        50% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0.3;
+        }
+    }
+
+
+
+
+</style>
+<i class="fab fa-spotify pulsing"></i>&nbsp;<span href="" id="off"></span>
+<a id="song"></a>
+<span id="artist"></span>
