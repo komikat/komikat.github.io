@@ -28,7 +28,10 @@ const updateSong = async () => {
             }
         }
     ).catch((err) => {
-        console.log("error: ", err)
+        console.log("error: ", err);
+        document.getElementById('off').innerText = "Offline";
+        document.getElementById('song').innerText = "";
+        document.getElementById('artist').innerText = "";
     })
 }
 updateSong()
