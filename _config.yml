@@ -24,7 +24,7 @@ email: akshitdotkr@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   akshit's personal homepage
 baseurl: "/" # the subpath of your site, e.g. /blog
-url: "https://akshitkr.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://komikat.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Build settings
 plugins:
@@ -35,9 +35,9 @@ theme: minima
 minima:
   date_format: "%b %-d, %Y"
 
-github_username: akshitkr
+github_username: komikat
 twitter_username: akshitkr
-instagram_username: idek.akshit
+instagram_username: akshitkr_
 
 title: firman
 
