@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Fetching what I'm listening to (experiments with server side rendering)"
+categories: server python
 comments: false
 ---
 
