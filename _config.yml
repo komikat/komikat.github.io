@@ -21,6 +21,7 @@
 author: Akshit Kumar
 email: akshitdotkr@gmail.com
 env: development
+future: true
 
 description: >- # this means to ignore newlines until "baseurl:"
   akshit's online record
