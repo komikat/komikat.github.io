@@ -1,0 +1,23 @@
+---
+layout: default
+title: Home
+---
+
+<div class="posts">
+  {% for post in paginator.posts %}
+  <div class="">
+    <div>
+      <div class="listed-title">
+        <a href="{{ post.url | relative_url }}">
+          {{ post.title }}
+        </a>
+        
+        <time datetime="{{ post.date | date_to_xmlschema }}" class="listed-date right-aligned">{{ post.date | date_to_string }}</time>
+      </div>
+      
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+
