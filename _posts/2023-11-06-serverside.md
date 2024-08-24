@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Fetching what I'm listening to (experiments with server side rendering)"
+title: "lastfm server side experiments"
 categories: server python
 comments: false
 ---
