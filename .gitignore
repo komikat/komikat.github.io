@@ -5,3 +5,4 @@ _site
 vendor
 /_sass/.DS_Store
 /.idea/
+.DS_Store
