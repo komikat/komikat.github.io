@@ -5,9 +5,6 @@ categories: server python
 comments: false
 ---
 
-Decided to write a tiny python script to render my website's `index.html` page with
-the song I was last listening to using lastfm's [generous](https://www.last.fm/api) api.
-
 ```python
 #!/usr/bin/env python3
 
@@ -51,6 +48,3 @@ with open(rpath, "w") as f:
     f.write(code)
 
 ```
-
-Planning to extend this by highlighting the name of the song with the dominant color from the album artwork but 
-that's for another day.

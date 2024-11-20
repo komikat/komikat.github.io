@@ -1,7 +1,7 @@
-title: klog
+title: Notepad
 author: Akshit Kumar
 email: akshitdotkr@gmail.com
-tagline: dump-ए-thoughts
+tagline: a collection of sheets of paper glued or fastened together at one end
 url: https://komikat.github.io
 permalink: pretty
 env: development
@@ -25,7 +25,6 @@ exclude:
   - LICENSE.md
   - README.md
   
-title: klog
 sass:
   sass_dir: _sass
   style: :compressed
