@@ -1,7 +1,7 @@
-title: Notepad
+title: Hosted Marginalia
 author: Akshit Kumar
 email: akshitdotkr@gmail.com
-tagline: a collection of sheets of paper glued or fastened together at one end
+tagline: scribbles on the margins, now hosted
 url: https://komikat.github.io
 permalink: pretty
 env: development
@@ -27,7 +27,6 @@ exclude:
   
 sass:
   sass_dir: _sass
-  style: :compressed
 
 
 github_username: komikat
