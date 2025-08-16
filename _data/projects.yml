@@ -1,6 +1,6 @@
 # Add projects here. Each entry needs: title, description, url
 - title: "Do Multilingual Transformers Encode Paninian Grammatical Relations?"
-  description: "Explored whether traditional Indian grammatical theory applies to modern NLP by probing multilingual transformers. Built biaffine classifiers for morpho-syntactic relation detection across 7 languages. Published at Depling 2025."
+  description: "Explored whether traditional Indian grammatical theory applies to modern NLP by probing multilingual transformers. Built biaffine classifiers for morpho-syntactic relation detection across 7 languages."
   url: "https://github.com/komikat"
   date: "Spring 2025"
 
