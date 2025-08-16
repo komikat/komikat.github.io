@@ -11,11 +11,12 @@
       document.documentElement.style.background = 'transparent';
       document.body.style.background = 'transparent';
 
-      // Canvas style (keep it full-viewport)
-      canvas.style.position = 'fixed';
-      canvas.style.inset = '0';
+      // Canvas style (make it scroll with content and cover full document)
+      canvas.style.position = 'absolute';
+      canvas.style.top = '0';
+      canvas.style.left = '0';
       canvas.style.width = '100%';
-      canvas.style.height = '100%';
+      canvas.style.height = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, window.innerHeight) + 'px';
       canvas.style.zIndex = '0';
       canvas.style.pointerEvents = 'none';
 
@@ -23,11 +24,13 @@
 
       function resizeCanvasBacking() {
         const dpr = window.devicePixelRatio || 1;
+        const documentHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, window.innerHeight);
         const w = Math.max(1, Math.floor(window.innerWidth * dpr));
-        const h = Math.max(1, Math.floor(window.innerHeight * dpr));
+        const h = Math.max(1, Math.floor(documentHeight * dpr));
         if (canvas.width !== w || canvas.height !== h) {
           canvas.width = w;
           canvas.height = h;
+          canvas.style.height = documentHeight + 'px';
         }
       }
 
@@ -40,19 +43,31 @@
         // set pixel backing once and on resize only
         resizeCanvasBacking();
 
+        // Get current theme colors
+        const bodyBg = (getComputedStyle(document.documentElement).getPropertyValue('--body-bg') || '#fff').trim();
+        const bodyColor = (getComputedStyle(document.documentElement).getPropertyValue('--body-color') || '#495057').trim();
+        
+        // Detect if we're in dark mode by checking background color
+        const isDarkMode = bodyBg === '#212529' || bodyBg.includes('212529');
+        
+        // Theme-aware cell colors
+        const cellColor = isDarkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.03)';
+        const deadCellColor = isDarkMode ? 'rgba(255,255,255,0.09)' : 'rgba(0,0,0,0.06)';
+
         const opts = {
           cellSize: Math.random() * 10 + 10,
           animationSpeed: 600,
-          backgroundColor: (getComputedStyle(document.documentElement).getPropertyValue('--body-bg') || '#fff').trim(),
-          cellColor: 'rgba(255,255,255,0.05)',
-          deadCellColor: 'rgba(255,255,255,0.09)',
+          backgroundColor: bodyBg,
+          cellColor: cellColor,
+          deadCellColor: deadCellColor,
           showGrid: false,
           showDead: true,
           toroidal: true
         };
 
         const cssWidth = Math.floor(window.innerWidth);
-        const cssHeight = Math.floor(window.innerHeight);
+        const documentHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, window.innerHeight);
+        const cssHeight = Math.floor(documentHeight);
         const gridW = Math.max(10, Math.floor(cssWidth / opts.cellSize));
         const gridH = Math.max(10, Math.floor(cssHeight / opts.cellSize));
 
@@ -67,23 +82,83 @@
 
         // update only on resize to avoid scroll jank
         let resizeTimer = null;
-        window.addEventListener('resize', () => {
+        function updateCanvasSize() {
           if (resizeTimer) clearTimeout(resizeTimer);
           resizeTimer = setTimeout(() => {
             resizeCanvasBacking();
             // recreate grid to fit new size
             try {
               if (game && typeof game.stop === 'function') game.stop();
+              
+              // Update theme-aware colors on resize
+              const bodyBg = (getComputedStyle(document.documentElement).getPropertyValue('--body-bg') || '#fff').trim();
+              const isDarkMode = bodyBg === '#212529' || bodyBg.includes('212529');
+              const cellColor = isDarkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.03)';
+              const deadCellColor = isDarkMode ? 'rgba(255,255,255,0.09)' : 'rgba(0,0,0,0.06)';
+              
+              const updatedOpts = Object.assign({}, opts, {
+                backgroundColor: bodyBg,
+                cellColor: cellColor,
+                deadCellColor: deadCellColor
+              });
+              
               const newCssW = Math.floor(window.innerWidth);
-              const newCssH = Math.floor(window.innerHeight);
+              const newDocumentHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, window.innerHeight);
+              const newCssH = Math.floor(newDocumentHeight);
               const newGridW = Math.max(10, Math.floor(newCssW / opts.cellSize));
               const newGridH = Math.max(10, Math.floor(newCssH / opts.cellSize));
-              game = conway.conway('conway-bg', Object.assign({}, opts, { gridWidth: newGridW, gridHeight: newGridH }));
+              game = conway.conway('conway-bg', Object.assign({}, updatedOpts, { gridWidth: newGridW, gridHeight: newGridH }));
               game.randomize(0.15);
               game.start();
             } catch (err) { console.warn(err); }
           }, 120);
-        }, { passive: true });
+        }
+
+        window.addEventListener('resize', updateCanvasSize, { passive: true });
+
+        // Also listen for content changes that might affect document height
+        const observer = new MutationObserver(() => {
+          updateCanvasSize();
+        });
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true,
+          attributes: true,
+          attributeFilter: ['style', 'class']
+        });
+
+        // Listen for theme changes
+        if (window.matchMedia) {
+          const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+          darkModeMediaQuery.addEventListener('change', () => {
+            setTimeout(() => {
+              try {
+                if (game && typeof game.stop === 'function') game.stop();
+                
+                // Update theme-aware colors
+                const bodyBg = (getComputedStyle(document.documentElement).getPropertyValue('--body-bg') || '#fff').trim();
+                const isDarkMode = bodyBg === '#212529' || bodyBg.includes('212529');
+                const cellColor = isDarkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.03)';
+                const deadCellColor = isDarkMode ? 'rgba(255,255,255,0.09)' : 'rgba(0,0,0,0.06)';
+                
+                const updatedOpts = Object.assign({}, opts, {
+                  backgroundColor: bodyBg,
+                  cellColor: cellColor,
+                  deadCellColor: deadCellColor
+                });
+                
+                const cssW = Math.floor(window.innerWidth);
+                const documentHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, window.innerHeight);
+                const cssH = Math.floor(documentHeight);
+                const gridW = Math.max(10, Math.floor(cssW / opts.cellSize));
+                const gridH = Math.max(10, Math.floor(cssH / opts.cellSize));
+                game = conway.conway('conway-bg', Object.assign({}, updatedOpts, { gridWidth: gridW, gridHeight: gridH }));
+                game.randomize(0.15);
+                game.start();
+              } catch (err) { console.warn('Theme change Conway update failed:', err); }
+            }, 50);
+          });
+        }
       });
     })();
   } catch (e) {
@@ -91,14 +166,20 @@
   }
 </script>
 <style>
-  /* full-viewport canvas */
+  /* canvas that scrolls with content and covers full document height */
   #conway-bg {
-    position: fixed;
-    inset: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 100%;
+    min-height: 100vh;
     z-index: 0;
     pointer-events: none;
+  }
+
+  /* ensure body has relative positioning for absolute canvas */
+  body {
+    position: relative;
   }
 
   /* ensure content sits above canvas and hides center area */
