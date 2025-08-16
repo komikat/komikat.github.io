@@ -1,0 +1,55 @@
+# Add projects here. Each entry needs: title, description, url
+- title: "Do Multilingual Transformers Encode Paninian Grammatical Relations?"
+  description: "Explored whether traditional Indian grammatical theory applies to modern NLP by probing multilingual transformers. Built biaffine classifiers for morpho-syntactic relation detection across 7 languages. Published at Depling 2025."
+  url: "https://github.com/komikat"
+  date: "Spring 2025"
+
+- title: "Adversarial Robustness of Vision-Language Models"
+  description: "Investigated frequency-domain adversarial attacks on Llama Guard 3's multimodal safety filters. Combined vision adversarials with language model security testing."
+  url: "https://github.com/komikat"
+  date: "Spring 2025"
+
+- title: "Grounding Small LMs on Structured Data"
+  description: "Explored multi-hop QA using teacher-student distillation for reasoning chain transfer. Built a graph traversal RAG pipeline that achieved 15% accuracy boost by teaching smaller models logical paths."
+  url: "https://github.com/komikat"
+  date: "Monsoon 2024"
+
+- title: "Functional Tensor DSL"
+  description: "Experimented with Racket-based tensor DSL, reimagining ML ops through Lisp's compositional philosophy. Built computation graph auto-differentiation from scratch using functional paradigms."
+  url: "https://github.com/komikat"
+  date: "Monsoon 2024"
+
+- title: "Compiler for a Strictly Typed Language"
+  description: "Nanopass compiler in Racket with graph-coloring register allocation. Implemented tuple support and garbage collection using interference graphs for optimal register usage."
+  url: "https://github.com/komikat/racket-compiler"
+  date: "Monsoon 2024"
+
+- title: "Domain-Adaptive Text Generation Detection"
+  description: "Built a black-box detection framework for machine-generated text. Experimented with LoRA adapter fine-tuning for detection tasks, achieving 92% F1 without full retraining."
+  url: "https://github.com/komikat"
+  date: "Monsoon 2023"
+
+- title: "Network File System"
+  description: "Network file system built from scratch in C for parallel clients. Implemented LRU caching and concurrent operations for efficient distributed storage."
+  url: "https://github.com/komikat/network-file-system"
+  date: "Monsoon 2023"
+
+- title: "ak.sh - A Simple Shell"
+  description: "Shell written from scratch in C with piping, I/O redirection, and networking support for fetching man pages."
+  url: "https://github.com/komikat/aksh"
+  date: "Monsoon 2023"
+
+- title: "xv6.01 - A Slightly Better xv6 (Toy OS)"
+  description: "Enhanced xv6 OS by replacing round-robin scheduler with multi-level feedback queue and implementing copy-on-write with performance evaluation."
+  url: "https://github.com/komikat/xv6.01"
+  date: "Monsoon 2023"
+
+- title: "Greddiit"
+  description: "A minimal forum built using React Query. Backend powered by TypeScript, Mongoose, and MongoDB."
+  url: "https://github.com/komikat/greddiit"
+  date: "Spring 2022"
+
+- title: "Mealsource"
+  description: "A mobile app to crowdsource campus meal deliveries. Winner of the hackathon organised by the Open Source Developers Group at IIIT Hyderabad (HackIIIT)."
+  url: "https://github.com/mealsource"
+  date: "Spring 2022"

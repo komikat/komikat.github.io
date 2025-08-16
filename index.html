@@ -3,7 +3,36 @@ layout: default
 title: Home
 ---
 
+<hr>
+
+<small>
+        Hi, I'm a 5th-year Computational Linguistics and Computer Science dual degree student at IIIT Hyderabad. 
+        I work on linguistic interpretation of language models at the <a href="https://ltrc.iiit.ac.in/">Language Technologies Research Centre</a>.
+</small>
+
+<hr>
+<div>
+  
+  <h2>Selected Projects</h2>
+  <div>
+    {% for project in site.data.projects %}
+    <div class="project-item">
+      <div class="listed-title project-head">
+        <a class="project-title" href="{{ project.url }}" target="_blank" rel="noopener noreferrer">{{ project.title }}</a>
+        {% if project.date %}
+        <span class="listed-date right-aligned">{{ project.date }}</span>
+        {% endif %}
+      </div>
+
+      <p class="project-desc">{{ project.description }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<hr>
 <div class="posts">
+  <h2>Notes from the past</h2>
+  
   {% for post in paginator.posts %}
   <div class="">
     <div>
@@ -17,7 +46,17 @@ title: Home
       
     </div>
   </div>
+  
   {% endfor %}
 </div>
 
+<hr>
 
+<div class="social-links" style="margin: 20px 0;">
+  <small>
+    <a href="https://x.com/akshitkr" target="_blank" rel="noopener noreferrer">Twitter</a> • 
+    <a href="https://github.com/komikat" target="_blank" rel="noopener noreferrer">GitHub</a>
+  </small>
+</div>
+
+<hr style="padding-bottom: 30px;">

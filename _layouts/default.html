@@ -5,7 +5,10 @@
 
   <body>
 
+    {% include conway.html %}
+
     <div class="container content">
+      
       <header class="masthead">
         <h2 class="masthead-title">
           <a href="{{ site.baseurl }}/" title="Home">{{ site.title }}</a>
@@ -16,14 +19,6 @@
       <main>
         {{ content }}
       </main>
-
-      <footer class="footer">
-        
-        <small>
-          &exist; Akshit Kumar,
-          4th year computational linguistics dual degree student at IIIT Hyderabad, interested in semantics and interpretability
-        </small>
-      </footer>
     </div>
 
     {% if site.ga_analytics %}

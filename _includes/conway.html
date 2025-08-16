@@ -1,0 +1,113 @@
+<!-- simple full-viewport Conway canvas; content covers center via its background and z-index -->
+<canvas id="conway-bg" aria-hidden="true"></canvas>
+<script src="https://unpkg.com/@rankdim/conway@0.5.2/dist/conway.umd.cjs"></script>
+<script>
+  try {
+    (function() {
+      const canvas = document.getElementById('conway-bg');
+      const container = document.querySelector('.container.content') || document.querySelector('.container');
+
+      // Ensure page-level background is transparent so the canvas shows on gutters
+      document.documentElement.style.background = 'transparent';
+      document.body.style.background = 'transparent';
+
+      // Canvas style (keep it full-viewport)
+      canvas.style.position = 'fixed';
+      canvas.style.inset = '0';
+      canvas.style.width = '100%';
+      canvas.style.height = '100%';
+      canvas.style.zIndex = '0';
+      canvas.style.pointerEvents = 'none';
+
+      let game = null;
+
+      function resizeCanvasBacking() {
+        const dpr = window.devicePixelRatio || 1;
+        const w = Math.max(1, Math.floor(window.innerWidth * dpr));
+        const h = Math.max(1, Math.floor(window.innerHeight * dpr));
+        if (canvas.width !== w || canvas.height !== h) {
+          canvas.width = w;
+          canvas.height = h;
+        }
+      }
+
+      const waitForConway = (cb) => {
+        if (typeof conway === 'undefined') return setTimeout(() => waitForConway(cb), 50);
+        cb();
+      };
+
+      waitForConway(() => {
+        // set pixel backing once and on resize only
+        resizeCanvasBacking();
+
+        const opts = {
+          cellSize: Math.random() * 10 + 10,
+          animationSpeed: 600,
+          backgroundColor: (getComputedStyle(document.documentElement).getPropertyValue('--body-bg') || '#fff').trim(),
+          cellColor: 'rgba(255,255,255,0.05)',
+          deadCellColor: 'rgba(255,255,255,0.09)',
+          showGrid: false,
+          showDead: true,
+          toroidal: true
+        };
+
+        const cssWidth = Math.floor(window.innerWidth);
+        const cssHeight = Math.floor(window.innerHeight);
+        const gridW = Math.max(10, Math.floor(cssWidth / opts.cellSize));
+        const gridH = Math.max(10, Math.floor(cssHeight / opts.cellSize));
+
+        try {
+          if (game && typeof game.stop === 'function') game.stop();
+          game = conway.conway('conway-bg', Object.assign({}, opts, { gridWidth: gridW, gridHeight: gridH }));
+          game.randomize(0.15);
+          game.start();
+        } catch (err) {
+          console.warn('conway init error', err);
+        }
+
+        // update only on resize to avoid scroll jank
+        let resizeTimer = null;
+        window.addEventListener('resize', () => {
+          if (resizeTimer) clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(() => {
+            resizeCanvasBacking();
+            // recreate grid to fit new size
+            try {
+              if (game && typeof game.stop === 'function') game.stop();
+              const newCssW = Math.floor(window.innerWidth);
+              const newCssH = Math.floor(window.innerHeight);
+              const newGridW = Math.max(10, Math.floor(newCssW / opts.cellSize));
+              const newGridH = Math.max(10, Math.floor(newCssH / opts.cellSize));
+              game = conway.conway('conway-bg', Object.assign({}, opts, { gridWidth: newGridW, gridHeight: newGridH }));
+              game.randomize(0.15);
+              game.start();
+            } catch (err) { console.warn(err); }
+          }, 120);
+        }, { passive: true });
+      });
+    })();
+  } catch (e) {
+    console.warn('conway background failed to initialize:', e);
+  }
+</script>
+<style>
+  /* full-viewport canvas */
+  #conway-bg {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* ensure content sits above canvas and hides center area */
+  .container.content, main, header, .site-content {
+    position: relative;
+    z-index: 2;
+    background: var(--body-bg);
+  }
+
+  /* force page transparent if other rules set it */
+  html, body { background: transparent !important; }
+</style>

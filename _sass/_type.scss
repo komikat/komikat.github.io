@@ -4,8 +4,8 @@
 // and fonts!
 
 @font-face {
-    font-family: 'EB Garamond';
-    src: url('assets/fonts/EBGaramond-VariableFont_wght.ttf') format('truetype');
+    font-family: 'Be Vietnam Pro';
+    src: url('assets/fonts/BeVietnamPro-Regular.ttf') format('truetype');
 }
 
 @font-face {
@@ -27,7 +27,9 @@ h1 {
 
 h2 {
   margin-top: 1rem;
-  font-size: 1.5rem;
+  font-size: 1.8rem; // make section headings larger than item titles
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
 h3 {

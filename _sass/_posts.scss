@@ -22,6 +22,7 @@
 
 .listed-date {
     color: var(--gray-600);
+    font-size: 0.9rem;
 }
 
 // Blog post or page title
@@ -82,4 +83,28 @@
 
 .right-aligned {
     text-align: right;
+}
+
+// Projects list
+.project-item {
+  margin: 0.5rem 0 1rem 0;
+
+  .project-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .project-title {
+    font-weight: 600;
+  font-size: inherit; // match listing title size
+  }
+  
+}
+
+.project-desc {
+  margin: 0.15rem 0 0 0;
+  color: var(--gray-600);
+  font-size: 0.95rem;
+  margin-left: 0.15rem;
 }
