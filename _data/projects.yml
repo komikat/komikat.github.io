@@ -1,7 +1,13 @@
 # Add projects here. Each entry needs: title, description, url
+
+- title: "Reverse Engineering a Stateful Reasoning circuit"
+  description: "Studied Gemma-2-2B on a controlled role-gated retrieval task where a prepositional gate (to or from) selects which of two entities is correct."
+  url: "https://openreview.net/forum?id=bIF9C682xB"
+  date: "Spring 2025"
+  
 - title: "Do Multilingual Transformers Encode Paninian Grammatical Relations?"
-  description: "Investigated how multilingual transformers (XLM-RoBERTa, mBERT, IndicBERT) internally encode grammatical information from the Paninian framework across seven Indian languages. Used diagnostic probing to analyze layer-wise encoding patterns, finding syntactic dependencies peak in middle-upper layers (6-9) while lexical features emerge earlier. Paper accepted to <a href='https://syntaxfest.github.io/syntaxfest25/'>SyntaxFest 2025</a>."
-  url: "https://syntaxfest.github.io/syntaxfest25/"
+  description: "Investigated how multilingual transformers (XLM-RoBERTa, mBERT, IndicBERT) internally encode grammatical information from the Paninian framework across seven Indian languages. Used diagnostic probing to analyze layer-wise encoding patterns, finding syntactic dependencies peak in middle-upper layers (6-9) while lexical features emerge earlier."
+  url: "https://aclanthology.org/2025.quasy-1.15/"
   date: "Spring 2025"
 
 - title: "Adversarial Robustness of Vision-Language Models"
