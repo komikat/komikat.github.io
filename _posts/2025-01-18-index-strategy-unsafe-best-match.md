@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "--index-strategy unsafe-best-match"
+description: "A uv installation note for resolving trusted packages across indexes."
 date:   2025-01-18 04:00:47 +0530
 categories: jekyll update
 comments: false

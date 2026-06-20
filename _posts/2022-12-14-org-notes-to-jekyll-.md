@@ -1,6 +1,7 @@
 ---
 layout: post
-title: "Org notes to Jekyll "
+title: "Exporting Org Notes to Jekyll"
+description: "Emacs Lisp helpers for exporting Org notes into Jekyll posts."
 date: 2022-12-14 20:46:22 +0530
 categories: post
 comments: false

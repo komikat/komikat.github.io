@@ -1,6 +1,7 @@
 ---
 layout: post
-title: "emacs python repl fix"
+title: "Fixing the Python REPL in Emacs"
+description: "Replacing libedit with GNU Readline for a better Python REPL in Emacs."
 categories: emacs python
 comments: false
 ---
@@ -18,4 +19,3 @@ import readline
 print(readline.__doc__)
 ```
 should print `'Importing this module enables command line editing using GNU readline.'`.
-

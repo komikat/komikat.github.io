@@ -15,9 +15,10 @@ title: Home
 </section>
 
 <section class="home-section posts">
-  <h2>Notes</h2>
+  <h2 class="section-label">Notes</h2>
 
   {% for post in paginator.posts %}
+  {% unless post.hide_from_home %}
   <article class="home-list-item">
     <div class="listed-title">
       <a href="{{ post.url | relative_url }}">
@@ -26,12 +27,16 @@ title: Home
 
       <time datetime="{{ post.date | date_to_xmlschema }}" class="listed-date right-aligned">{{ post.date | date_to_string }}</time>
     </div>
+    {% if post.description %}
+    <p class="note-desc">{{ post.description }}</p>
+    {% endif %}
   </article>
+  {% endunless %}
   {% endfor %}
 </section>
 
 <section class="home-section">
-  <h2>Projects</h2>
+  <h2 class="section-label">Projects</h2>
 
   {% for project in site.data.projects %}
   <article class="project-item">

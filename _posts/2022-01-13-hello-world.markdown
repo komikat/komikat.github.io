@@ -1,6 +1,8 @@
 ---
 layout: post
 title:  "Hello world! (for the 7538th time)"
+description: "The opening note for this site and its role as a public notebook."
+hide_from_home: true
 date:   2022-01-13 16:34:47 +0530
 categories: jekyll update
 comments: false

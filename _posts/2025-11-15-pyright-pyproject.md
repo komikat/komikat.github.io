@@ -1,6 +1,7 @@
 ---
 layout: post
-title: "Getting pyright to work with uv"
+title: "Configuring Pyright with uv"
+description: "Pointing Pyright at the virtual environment managed by uv."
 comments: false
 ---
 

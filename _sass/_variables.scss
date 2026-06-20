@@ -1,4 +1,6 @@
 :root {
+  color-scheme: light dark;
+
   --gray-000: #f8f9fa;
   --gray-100: #f1f3f5;
   --gray-200: #e9ecef;
@@ -26,23 +28,26 @@
   --blue-400: #4dabf7;
   --yellow-100: #fff3bf;
 
-  --body-font: 'Be Vietnam Pro';
-  --body-font-size: 22px;
-  --body-line-height: 1.3;
-  --body-color: var(--gray-700);
-  --body-bg: #fff;
+  --body-font: "EB Garamond", Georgia, serif;
+  --ui-font: "Hack", SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --body-font-size: 21px;
+  --body-line-height: 1.5;
+  --body-color: #3f3a35;
+  --body-bg: #f8f5ee;
+  --muted-color: #746d64;
 
-  --link-color: var(--blue);
-  --link-hover-color: #1c7ed6;
+  --link-color: #794631;
+  --link-hover-color: #a05a3d;
+  --link-underline-color: rgba(121, 70, 49, .38);
 
-  --heading-color: var(--gray-900);
+  --heading-color: #27231f;
 
-  --border-color: var(--gray-300);
+  --border-color: #d8d1c5;
   --border-radius: .25rem;
 
   --code-font: "Hack", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --code-color: var(--grape);
-  --code-bg: var(--gray-000);
+  --code-bg: #eee9df;
 
   --spacer: 1rem;
   --spacer-2: calc(var(--spacer) * 1.5);
@@ -51,17 +56,18 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --body-color: var(--gray-200);
-    --body-bg: var(--gray-900);
+    --body-color: #d8d2c9;
+    --body-bg: #1f2122;
+    --muted-color: #aaa39a;
 
-    --heading-color: #fff;
+    --heading-color: #f3eee6;
 
-    --link-color: var(--blue-400);
-    --link-hover-color: var(--blue-400);
+    --link-color: #d2a184;
+    --link-hover-color: #edb899;
+    --link-underline-color: rgba(210, 161, 132, .42);
 
-    --border-color: rgba(255,255,255,.15);
+    --border-color: #414345;
 
-    --code-bg: var(--gray-800);
+    --code-bg: #292c2e;
   }
 }
-

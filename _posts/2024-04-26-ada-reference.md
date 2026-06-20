@@ -1,6 +1,7 @@
 ---
 layout: post
-title: "Ada reference"
+title: "Ada Cluster Reference"
+description: "Commands and setup notes for IIIT Hyderabad's Ada compute cluster."
 comments: false
 ---
 

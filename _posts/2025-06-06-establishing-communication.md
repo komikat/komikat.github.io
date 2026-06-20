@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Establishing Communication"
+description: "How reversing source sentences helped early sequence-to-sequence models learn."
 comments: false
 ---
 

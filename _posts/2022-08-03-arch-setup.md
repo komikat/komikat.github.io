@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Asahi Linux Setup"
+description: "Setup notes for running a minimal Linux environment on Apple Silicon."
 date: 2022-08-03 18:06:10 +0530
 categories: arch emacs
 comments: false

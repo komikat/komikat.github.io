@@ -1,6 +1,7 @@
 ---
 layout: post
-title: "lastfm server side experiments"
+title: "Fetching Recent Last.fm Tracks"
+description: "A minimal Python experiment for fetching the latest Last.fm track."
 categories: server python
 comments: false
 ---
