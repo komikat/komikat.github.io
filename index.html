@@ -3,62 +3,55 @@ layout: default
 title: Home
 ---
 
-<hr>
-Hi, I'm a 5th-year Computational Linguistics and Computer Science dual
-degree student at IIIT Hyderabad.  I work on mechanistic
-interpretability of language models from a linguistics lens at
-the <a href="https://ltrc.iiit.ac.in/">Language Technologies Research
-  Centre</a>. Currently I'm working as an intern at the data integration
-team of <a href="https://qube-rt.com">Qube Research & Technologies</a>, a quantitative hedge fund.
-<hr>
-<div>
-  
-  <h2>Selected Projects</h2>
-  <div>
-    {% for project in site.data.projects %}
-    <div class="project-item">
-      <div class="listed-title project-head">
-        <a class="project-title" href="{{ project.url }}" target="_blank" rel="noopener noreferrer">{{ project.title }}</a>
-        {% if project.date %}
-        <span class="listed-date right-aligned">{{ project.date }}</span>
-        {% endif %}
-      </div>
+<section class="home-intro">
+  <p>
+    Hi, I'm a 5th-year Computational Linguistics and Computer Science dual
+    degree student at IIIT Hyderabad. I work on mechanistic interpretability of
+    language models from a linguistics lens at the
+    <a href="https://ltrc.iiit.ac.in/">Language Technologies Research Centre</a>.
+    Currently I'm working as an intern at the data integration team of
+    <a href="https://qube-rt.com">Qube Research &amp; Technologies</a>, a quantitative hedge fund.
+  </p>
+</section>
 
-      <p class="project-desc">{{ project.description }}</p>
-    </div>
-    {% endfor %}
-  </div>
-</div>
-<hr>
-<div class="posts">
-  <h2>Notes from the past</h2>
-  
+<section class="home-section posts">
+  <h2>Notes</h2>
+
   {% for post in paginator.posts %}
-  <div class="">
-    <div>
-      <div class="listed-title">
-        <a href="{{ post.url | relative_url }}">
-          {{ post.title }}
-        </a>
-        
-        <time datetime="{{ post.date | date_to_xmlschema }}" class="listed-date right-aligned">{{ post.date | date_to_string }}</time>
-      </div>
-      
+  <article class="home-list-item">
+    <div class="listed-title">
+      <a href="{{ post.url | relative_url }}">
+        {{ post.title }}
+      </a>
+
+      <time datetime="{{ post.date | date_to_xmlschema }}" class="listed-date right-aligned">{{ post.date | date_to_string }}</time>
     </div>
-  </div>
-  
+  </article>
   {% endfor %}
-</div>
+</section>
 
-<hr>
+<section class="home-section">
+  <h2>Projects</h2>
 
-<div class="social-links" style="margin: 20px 0;">
+  {% for project in site.data.projects %}
+  <article class="project-item">
+    <div class="listed-title project-head">
+      <a class="project-title" href="{{ project.url }}" target="_blank" rel="noopener noreferrer">{{ project.title }}</a>
+      {% if project.date %}
+      <span class="listed-date right-aligned">{{ project.date }}</span>
+      {% endif %}
+    </div>
+
+    <p class="project-desc">{{ project.description }}</p>
+  </article>
+  {% endfor %}
+</section>
+
+<footer class="social-links">
   <small>
     <a href="https://scholar.google.com/citations?view_op=list_works&hl=en&hl=en&user=ofZqMcwAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a> •
     <a href="https://github.com/komikat" target="_blank" rel="noopener noreferrer">GitHub</a> •
     <a href="https://x.com/akshitkr" target="_blank" rel="noopener noreferrer">Twitter</a> • 
     <a href="https://www.linkedin.com/in/akshit-kumar-229a06147/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
   </small>
-</div>
-
-<hr style="padding-bottom: 30px;">
+</footer>

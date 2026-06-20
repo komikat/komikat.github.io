@@ -1,0 +1,55 @@
+.william-poem {
+  margin: 1.5rem 0;
+}
+
+.william-kicker {
+  color: #666;
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+}
+
+.william-title {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  box-sizing: border-box;
+  color: inherit;
+  display: block;
+  font: inherit;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  margin: 0 0 0.5rem;
+  padding: 0;
+  width: 100%;
+}
+
+.william-title:focus {
+  border-bottom-color: currentColor;
+  outline: 0;
+}
+
+.william-output {
+  margin: 0;
+  min-height: 8rem;
+  white-space: pre-wrap;
+}
+
+.william-output:empty::after {
+  color: #888;
+  content: "The page is loading the model, then it will write here.";
+}
+
+.william-regenerate {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+}
+
+.william-regenerate:disabled {
+  color: #888;
+  cursor: wait;
+}

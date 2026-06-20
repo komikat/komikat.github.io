@@ -18,11 +18,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
+    margin-right: calc(-1 * var(--spacer));
+    padding-right: var(--spacer);
 }
 
 .listed-date {
     color: var(--gray-600);
     font-size: 0.9rem;
+    margin-left: auto;
 }
 
 // Blog post or page title
@@ -83,6 +87,36 @@
 
 .right-aligned {
     text-align: right;
+}
+
+// Home page lists
+.home-intro {
+  margin: var(--spacer) 0 var(--spacer-2);
+  padding-bottom: var(--spacer);
+  border-bottom: 1px solid var(--border-color);
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.home-section {
+  margin: var(--spacer-2) 0;
+  padding-bottom: var(--spacer-2);
+  border-bottom: 1px solid var(--border-color);
+
+  h2 {
+    margin-top: 0;
+    margin-bottom: var(--spacer);
+  }
+}
+
+.home-list-item {
+  margin: 0.35rem 0;
+}
+
+.social-links {
+  margin: var(--spacer) 0 var(--spacer-2);
 }
 
 // Projects list
