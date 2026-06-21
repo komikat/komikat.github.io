@@ -3,7 +3,7 @@
 }
 
 .william-kicker {
-  color: #666;
+  color: var(--muted-color);
   font-size: 0.85rem;
   margin-bottom: 0.25rem;
 }
@@ -23,7 +23,7 @@
   width: 100%;
 }
 
-.william-title:focus {
+.william-title:focus-visible {
   border-bottom-color: currentColor;
   outline: 0;
 }
@@ -35,7 +35,7 @@
 }
 
 .william-output:empty::after {
-  color: #888;
+  color: var(--muted-color);
   content: "The page is loading the model, then it will write here.";
 }
 
@@ -50,6 +50,6 @@
 }
 
 .william-regenerate:disabled {
-  color: #888;
+  color: var(--muted-color);
   cursor: wait;
 }

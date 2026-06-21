@@ -1,33 +1,6 @@
 :root {
   color-scheme: light dark;
 
-  --gray-000: #f8f9fa;
-  --gray-100: #f1f3f5;
-  --gray-200: #e9ecef;
-  --gray-300: #dee2e6;
-  --gray-400: #ced4da;
-  --gray-500: #adb5bd;
-  --gray-600: #868e96;
-  --gray-700: #495057;
-  --gray-800: #343a40;
-  --gray-900: #212529;
-
-  --red: #fa5252;
-  --pink: #e64980;
-  --grape: #be4bdb;
-  --purple: #7950f2;
-  --indigo: #4c6ef5;
-  --blue: #228be6;
-  --cyan: #15aabf;
-  --teal: #12b886;
-  --green: #40c057;
-  --yellow: #fab005;
-  --orange: #fd7e14;
-
-  --blue-300: #74c0fc;
-  --blue-400: #4dabf7;
-  --yellow-100: #fff3bf;
-
   --body-font: "EB Garamond", Georgia, serif;
   --ui-font: "Hack", SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   --body-font-size: 21px;
@@ -49,9 +22,35 @@
   --code-color: var(--muted-color);
   --code-bg: #eee9df;
 
+  --highlight-bg: #fff3bf;
+  --highlight-fg: #27231f;
+
   --spacer: 1rem;
   --spacer-2: calc(var(--spacer) * 1.5);
   --spacer-3: calc(var(--spacer) * 3);
+
+  // Syntax highlighting
+  --syn-comment: #71717a;
+  --syn-error: #dc2626;
+  --syn-error-bg: color-mix(in srgb, var(--syn-error) 10%, transparent);
+  --syn-const: #b91c1c;
+  --syn-keyword: #2563eb;
+  --syn-operator: #0891b2;
+  --syn-preproc: #6366f1;
+  --syn-type: #8b5cf6;
+  --syn-class: #7c3aed;
+  --syn-func: #a21caf;
+  --syn-number: #ea580c;
+  --syn-string: #059669;
+  --syn-heading: #1e293b;
+  --syn-output: #64748b;
+  --syn-whitespace: #94a3b8;
+  --syn-variable: #0f172a;
+  --syn-hll-bg: rgba(255, 255, 204, .3);
+  --syn-diff-ins: #22c55e;
+  --syn-diff-ins-bg: color-mix(in srgb, var(--syn-diff-ins) 10%, transparent);
+  --syn-diff-del: var(--syn-error);
+  --syn-diff-del-bg: var(--syn-error-bg);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -69,5 +68,25 @@
     --border-color: #414345;
 
     --code-bg: #292c2e;
+
+    --highlight-bg: #43371f;
+    --highlight-fg: #f3eee6;
+
+    --syn-comment: #9ca3af;
+    --syn-error: #f87171;
+    --syn-const: #fca5a5;
+    --syn-keyword: #60a5fa;
+    --syn-operator: #22d3ee;
+    --syn-preproc: #818cf8;
+    --syn-type: #a78bfa;
+    --syn-class: #c084fc;
+    --syn-func: #e879f9;
+    --syn-number: #fb923c;
+    --syn-string: #34d399;
+    --syn-heading: #e2e8f0;
+    --syn-output: #94a3b8;
+    --syn-whitespace: #475569;
+    --syn-variable: #e2e8f0;
+    --syn-hll-bg: rgba(255, 255, 204, .15);
   }
 }

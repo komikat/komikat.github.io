@@ -9,7 +9,7 @@ pre {
 }
 
 code {
-  font-size: .72rem;
+  font-size: .85em;
   color: var(--code-color);
 }
 
@@ -17,7 +17,10 @@ pre {
   display: block;
   margin-top: 0;
   margin-bottom: var(--spacer-3);
+  padding: var(--spacer);
   overflow: auto;
+  background-color: var(--code-bg);
+  border-radius: var(--border-radius);
 }
 
 .highlight {
@@ -28,6 +31,8 @@ pre {
 
   pre {
     margin-bottom: 0;
+    padding: 0;
+    background-color: transparent;
   }
 
   // Triple backticks (code fencing) doubles the .highlight elements

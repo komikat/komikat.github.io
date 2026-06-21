@@ -1,0 +1,33 @@
+// Print
+//
+// Strip interactive chrome and reset colors for paper output.
+
+@media print {
+  .masthead,
+  .pagination,
+  .related,
+  .social-links,
+  .william-regenerate {
+    display: none;
+  }
+
+  body {
+    color: #000;
+    background: #fff;
+  }
+
+  .container {
+    max-width: 100%;
+  }
+
+  a {
+    color: #000;
+    text-decoration: underline;
+  }
+
+  pre,
+  .highlight {
+    background: transparent;
+    border: 1px solid #ccc;
+  }
+}

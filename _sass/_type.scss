@@ -5,7 +5,7 @@
 
 @font-face {
   font-family: "EB Garamond";
-  src: url("assets/fonts/EBGaramond-VariableFont_wght.ttf") format("truetype");
+  src: url("/assets/fonts/EBGaramond-VariableFont_wght.woff2") format("woff2");
   font-style: normal;
   font-weight: 400 800;
   font-display: swap;
@@ -13,7 +13,7 @@
 
 @font-face {
   font-family: "EB Garamond";
-  src: url("assets/fonts/EBGaramond-Italic-VariableFont_wght.ttf") format("truetype");
+  src: url("/assets/fonts/EBGaramond-Italic-VariableFont_wght.woff2") format("woff2");
   font-style: italic;
   font-weight: 400 800;
   font-display: swap;
@@ -21,7 +21,7 @@
 
 @font-face {
   font-family: "Hack";
-  src: url("assets/fonts/Hack-Regular.ttf") format("truetype");
+  src: url("/assets/fonts/Hack-Regular.woff2") format("woff2");
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -29,6 +29,7 @@
 
 
 h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
   margin-bottom: .5rem;
   font-weight: 600;
   line-height: 1.15;

@@ -5,8 +5,9 @@
 
 .pagination {
   display: flex;
+  flex-direction: column;
   margin: 0 -1.5rem var(--spacer);
-  color: var(--gray-500);
+  color: var(--muted-color);
   text-align: center;
 }
 
@@ -30,12 +31,12 @@ a.pagination-item:hover {
 
 @media (min-width: 30em) {
   .pagination {
+    flex-direction: row;
     margin: var(--spacer-3) 0;
   }
 
   .pagination-item {
-    float: left;
-    width: 50%;
+    flex: 1;
     border-width: 1px;
 
     &:first-child {
