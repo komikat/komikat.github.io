@@ -186,6 +186,12 @@ class WilliamOrtModel {
   async generateForTitle(title, options, onToken) {
     return this.generate(this.tokenizer.encodePrompt(title), options, onToken);
   }
+
+  async release() {
+    const session = this.session;
+    this.session = null;
+    if (session) await session.release();
+  }
 }
 
 async function loadWilliam(status) {
@@ -198,6 +204,9 @@ async function loadWilliam(status) {
   ort.env.wasm.numThreads = globalThis.crossOriginIsolated
     ? Math.max(1, Math.min(4, navigator.hardwareConcurrency || 1))
     : 1;
+  // Keep the WASM heap in a page-owned worker. Browsers terminate that worker
+  // promptly on refresh instead of briefly retaining two large heaps.
+  ort.env.wasm.proxy = true;
 
   status.textContent = "loading 14 MB ONNX model...";
   let session;
@@ -232,9 +241,19 @@ async function main() {
   button.disabled = true;
   button.hidden = true;
   let model;
+  let pageIsActive = true;
+
+  window.addEventListener("pagehide", () => {
+    pageIsActive = false;
+    void model?.release().catch(() => {});
+  }, { once: true });
 
   try {
     model = await loadWilliam(status);
+    if (!pageIsActive) {
+      await model.release();
+      return;
+    }
   } catch (error) {
     status.textContent = `could not load William: ${error.message}`;
     return;
