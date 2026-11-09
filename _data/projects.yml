@@ -1,5 +1,15 @@
 # Add projects here. Each entry needs: title, description, url
 
+- title: "FrontierSWE v2"
+  description: "Co-led a benchmark of 34 demanding engineering and research tasks for coding agents, evaluated over 20-hour runs."
+  url: "https://www.frontierswe.com/blog/v2"
+  date: "September 2026"
+
+- title: "When agents build racing bots"
+  description: "Co-authored an analysis of how coding agents generate training data and build vision-only racing bots in TORCS."
+  url: "https://www.frontierswe.com/blog/torcs-ai-bot"
+  date: "October 2026"
+
 - title: "Reverse Engineering a Stateful Reasoning circuit"
   description: "Studied Gemma-2-2B on a controlled role-gated retrieval task where a prepositional gate (to or from) selects which of two entities is correct."
   url: "https://openreview.net/forum?id=bIF9C682xB"

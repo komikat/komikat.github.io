@@ -109,13 +109,11 @@ def build():
                  f'{escape(project["title"])}</a>'
                  f'<p>{escape(project["description"])}</p></li>\n')
     write("index.html", page("Akshit Kumar", "/", home + "</ul>"))
-    meta, body = read_post(ROOT / "about.markdown")
-    write("about/index.html", page(meta["title"], "/about/",
-          f'<h1>{escape(meta["title"])}</h1>' + render(body)))
     write("404.html", page("Page not found", "/404.html",
           '<h1>Page not found</h1><p><a href="/">Back to the homepage</a>.</p>'))
-    # The homepage now lists every visible post; retain the old archive URL.
-    write("_redirects", "/page2/ / 301\n/page2 / 301\n")
+    # Preserve old archive and About links.
+    write("_redirects", "/page2/ / 301\n/page2 / 301\n"
+          "/about/ / 301\n/about / 301\n/about/index.html / 301\n")
     namespace = "http://www.w3.org/2005/Atom"
     ET.register_namespace("", namespace)
 
