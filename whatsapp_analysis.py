@@ -84,7 +84,7 @@ if not df.empty:
         template="plotly_white",
     )
 
-    fig.write_html("whatsapp_analysis.html")
+    fig.write_html("public/whatsapp_analysis.html")
     fig.show()
 else:
     print("No messages found to analyze")

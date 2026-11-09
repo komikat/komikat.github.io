@@ -1,0 +1,12 @@
+{
+  "name": "akshitkr-blog",
+  "compatibility_date": "2026-11-09",
+  "workers_dev": true,
+  "routes": [{ "pattern": "akshitkr.com", "custom_domain": true }],
+  "build": { "command": "uv run --locked build.py" },
+  "assets": {
+    "directory": "./dist",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  }
+}
