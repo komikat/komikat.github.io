@@ -2,7 +2,7 @@
 # requires-python = ">=3.11"
 # dependencies = ["Markdown>=3.7,<4", "PyYAML>=6,<7"]
 # ///
-"""Build the blog: uv run build.py. Output is disposable HTML in dist/."""
+"""Build the notebook: uv run build.py. Output is disposable HTML in dist/."""
 
 from datetime import date, datetime, timezone
 from html import escape
@@ -51,9 +51,35 @@ def page(title, path, body, description="Notes by Akshit Kumar.", math=False):
     return TEMPLATE.substitute(
         title=escape(title), canonical=escape(URL + path, quote=True),
         description=escape(description, quote=True), content=body,
+        masthead=('<h1>Akshit Kumar</h1>' if path == "/"
+                  else '<a class="home-link" href="/">← Akshit Kumar</a>'),
         scripts=('<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/'
                  'tex-mml-chtml.js"></script>' if math else ""),
     )
+
+
+def render_entry(title, url, metadata, description="", links=()):
+    html = (f'<li><div class="entry-heading"><a href="{escape(url, quote=True)}">'
+            f'{escape(title)}</a><span class="entry-meta">{metadata}</span></div>')
+    if description:
+        html += f'<p class="entry-description">{escape(description)}</p>'
+    if links:
+        html += '<p class="entry-links">' + ' · '.join(
+            f'<a href="{escape(link["url"], quote=True)}">{escape(link["title"])}</a>'
+            for link in links
+        ) + '</p>'
+    return html + '</li>\n'
+
+
+def note_entry(post, compact=False):
+    stamp = post["date"].date().isoformat()
+    label = post["date"].strftime("%b %Y") if compact else stamp
+    metadata = f'<time datetime="{stamp}">{label}</time>'
+    title = post["title"]
+    if post.get("external_url"):
+        title += " ↗"
+        metadata = escape(post["source"]) + " · " + metadata
+    return render_entry(title, post["url"], metadata)
 
 
 def build():
@@ -80,7 +106,7 @@ def build():
         path = "/" + "/".join([
             *categories, published.strftime("%Y/%m/%d"), slug, ""
         ])
-        posts.append(dict(meta, url=path, date=published, html=render(body),
+        posts.append(dict(meta, url=meta.get("external_url", path), date=published, html=render(body),
                           math=meta.get("math", False) or "$$" in body))
     posts.sort(key=lambda p: p["date"], reverse=True)
     if OUT.exists():
@@ -89,6 +115,8 @@ def build():
                     ignore=shutil.ignore_patterns(".DS_Store", "*~"))
     shutil.copyfile(ROOT / "site/style.css", OUT / "style.css")
     for post in posts:
+        if post.get("external_url"):
+            continue
         stamp = post["date"].date().isoformat()
         body = (f'<article><h1>{escape(post["title"])}</h1>'
                 f'<p><time datetime="{stamp}">{stamp}</time></p>'
@@ -96,24 +124,26 @@ def build():
         write(post["url"].lstrip("/") + "index.html",
               page(post["title"], post["url"], body,
                    post.get("description", post["title"]), post["math"]))
-    home = (ROOT / "site/home.html").read_text() + "\n<h2>Notes</h2>\n<ul>\n"
-    for post in posts:
-        if not post.get("hide_from_home", False):
-            stamp = post["date"].date().isoformat()
-            home += (f'<li><a href="{escape(post["url"], quote=True)}">'
-                     f'{escape(post["title"])}</a> '
-                     f'<small><time datetime="{stamp}">{stamp}</time></small></li>\n')
-    home += "</ul>\n<h2>Projects</h2>\n<ul>\n"
+    home = ((ROOT / "site/home.html").read_text()
+            + '\n<section class="home-section"><h2>Notes</h2>\n<ul class="entries notes" role="list">\n')
+    listed_posts = [p for p in posts if not p.get("hide_from_home", False)]
+    home += ''.join(note_entry(post, compact=True) for post in listed_posts[:5])
+    home += ('</ul><p class="archive-link"><a href="/notes/">All notes →</a></p>'
+             '</section>\n<section class="home-section"><h2>Selected work</h2>\n<ul class="entries" role="list">\n')
     for project in yaml.safe_load((ROOT / "_data/projects.yml").read_text()):
-        home += (f'<li><a href="{escape(project["url"], quote=True)}">'
-                 f'{escape(project["title"])}</a>'
-                 f'<p>{escape(project["description"])}</p></li>\n')
-    write("index.html", page("Akshit Kumar", "/", home + "</ul>"))
+        home += render_entry(project["title"], project["url"], escape(project.get("date", "")),
+                            project.get("description", ""), project.get("links", []))
+    home += '</ul></section>' + (ROOT / "site/poem.html").read_text()
+    write("index.html", page("Akshit Kumar", "/", home))
+    archive = '<h1>Notes</h1><ul class="entries notes" role="list">'
+    archive += ''.join(note_entry(post) for post in listed_posts)
+    write("notes/index.html", page("Notes", "/notes/", archive + '</ul>'))
     write("404.html", page("Page not found", "/404.html",
           '<h1>Page not found</h1><p><a href="/">Back to the homepage</a>.</p>'))
-    # Preserve old archive and About links.
+    # Preserve old archive, About, and writing links.
     write("_redirects", "/page2/ / 301\n/page2 / 301\n"
-          "/about/ / 301\n/about / 301\n/about/index.html / 301\n")
+          "/about/ / 301\n/about / 301\n/about/index.html / 301\n"
+          "/writing/ /notes/ 301\n/writing /notes/ 301\n/writing/index.html /notes/ 301\n")
     namespace = "http://www.w3.org/2005/Atom"
     ET.register_namespace("", namespace)
 
@@ -131,13 +161,14 @@ def build():
     element(element(feed, "author"), "name", "Akshit Kumar")
     for post in posts:
         entry = element(feed, "entry")
+        link = post["url"] if post.get("external_url") else URL + post["url"]
         element(entry, "title", post["title"])
-        element(entry, "id", URL + post["url"])
-        element(entry, "link", href=URL + post["url"])
+        element(entry, "id", link)
+        element(entry, "link", href=link)
         element(entry, "updated", post["date"].isoformat())
         element(entry, "content", post["html"], type="html")
     ET.ElementTree(feed).write(OUT / "atom.xml", encoding="utf-8", xml_declaration=True)
-    print(f"Built {len(posts)} posts in {OUT}")
+    print(f"Built {len(posts)} notes in {OUT}")
 
 
 if __name__ == "__main__":

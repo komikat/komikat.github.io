@@ -1,6 +1,6 @@
 # akshitkr.com
 
-A small static blog: Markdown posts, one Python script, plain HTML, and minimal CSS.
+A small static notebook: Markdown notes, one Python script, plain HTML, and minimal CSS.
 
 ```sh
 uv run --locked build.py
@@ -9,9 +9,19 @@ python3 -m http.server 8000 --directory dist
 
 Edit `site/home.html`, `site/page.html`, and `site/style.css` for the homepage,
 shared HTML, and styles. Posts stay in `_posts/` with their existing YAML metadata.
-Projects live in `_data/projects.yml`. Files in `public/` are copied unchanged
+Selected work lives in `_data/projects.yml`. Files in `public/` are copied unchanged
 to the site root, including images, the William demo, PDFs, and standalone pages.
 The build preserves existing dated URLs, raw HTML in posts, and the Atom feed.
+
+The homepage shows the five newest entries; `/notes/` has the full archive.
+Short snippets and longer pieces use the same format. Existing
+`hide_from_home: true` entries remain unlisted. For something published elsewhere,
+add `external_url` and `source` to its metadata, with a short summary as the body.
+It links directly to the original from the lists and feed, without a duplicate page.
+
+`site/poem.html` holds saved samples from William. `public/poem.js` picks one when
+the homepage opens; without JavaScript, the first sample is shown. The model only
+loads on its own page.
 
 Only Markdown and PyYAML are required at build time; `build.py.lock` pins both.
 Jekyll, Ruby, Sass, and a frontend framework are not needed.

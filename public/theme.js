@@ -8,7 +8,11 @@
   function apply() {
     const theme = preference || (system.matches ? 'dark' : 'light');
     document.documentElement.dataset.theme = theme;
-    if (button) button.textContent = theme === 'dark' ? 'Light mode' : 'Dark mode';
+    if (button) {
+      const label = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+      button.setAttribute('aria-label', label);
+      button.title = label;
+    }
   }
 
   apply();

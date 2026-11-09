@@ -26,7 +26,7 @@ class Links(HTMLParser):
                 check_link(self.source, value)
 
 
-for required in ("index.html", "404.html", "style.css", "atom.xml"):
+for required in ("index.html", "notes/index.html", "404.html", "style.css", "atom.xml"):
     if not (ROOT / required).is_file():
         raise SystemExit(f"Missing required build output: {required}")
 
@@ -45,7 +45,11 @@ for entry in entries:
     if link is None or not link.get("href"):
         errors.append("atom.xml: entry is missing its post link")
     else:
-        check_link(ROOT / "atom.xml", urlsplit(link.get("href")).path)
+        url = urlsplit(link.get("href"))
+        if url.scheme not in {"http", "https"} or not url.netloc:
+            errors.append("atom.xml: entry link must be an absolute HTTP(S) URL")
+        elif url.netloc == "akshitkr.com":
+            check_link(ROOT / "atom.xml", url.path)
 
 if errors:
     raise SystemExit("\n".join(sorted(set(errors))))
