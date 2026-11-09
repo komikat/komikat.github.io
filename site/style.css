@@ -1,0 +1,6 @@
+body { max-width: 44rem; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; overflow-wrap: break-word; }
+img, video { max-width: 100%; height: auto; }
+pre { overflow-x: auto; padding: 0.75rem; background: #f5f5f5; }
+table { display: block; max-width: 100%; overflow-x: auto; border-collapse: collapse; }
+th, td { padding: 0.25rem 0.5rem; border: 1px solid #ccc; }
+header, footer { margin: 2rem 0; }

@@ -1,8 +1,19 @@
-_site
-.sass-cache
-.jekyll-cache
-.jekyll-metadata
-vendor
-/_sass/.DS_Store
-/.idea/
 .DS_Store
+*~
+\#*\#
+.\#*
+__pycache__/
+/.idea/
+/dist/
+/.wrangler/
+.env
+.env.*
+.dev.vars
+.dev.vars.*
+
+# Local output left over from the previous Jekyll build.
+/_site/
+/.sass-cache/
+/.jekyll-cache/
+/.jekyll-metadata
+/vendor/
