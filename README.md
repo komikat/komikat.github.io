@@ -1,6 +1,6 @@
 # akshitkr.com
 
-A small static blog: Markdown posts, one Python script, plain HTML, and six CSS rules.
+A small static blog: Markdown posts, one Python script, plain HTML, and minimal CSS.
 
 ```sh
 uv run --locked build.py
@@ -15,6 +15,10 @@ The build preserves existing dated URLs, raw HTML in posts, and the Atom feed.
 
 Only Markdown and PyYAML are required at build time; `build.py.lock` pins both.
 Jekyll, Ruby, Sass, and a frontend framework are not needed.
+
+Inter is served locally from `public/assets/fonts/` under the included SIL Open
+Font License. The theme follows the system preference until the light/dark
+button is used; `public/theme.js` remembers that choice in local storage.
 
 Deploy static files to Cloudflare Workers (no server code):
 
